@@ -32,7 +32,7 @@
                 <p>{% if archive.fichier %}nom : {{ archive.nom }}<br> type : {{ archive.type }}{% else %}Aucun fichier n'a été joint{% endif %}</p>
               </div>
               <div class="room-box">
-                <h5 class="text-primary"><a href="{% url 'archive:download' archive.pk%}">fichier</a></h5>
+                <h5 class="text-primary"><a href="{{ archive.fichier.url }}">fichier: appuyer pour consulter</a></h5>
                 <p>{% if archive.fichier %}nom : {{ archive.nom }}<br> type : {{ archive.type }}{% else %}Aucun fichier n'a été joint{% endif %}</p>
               </div>
 

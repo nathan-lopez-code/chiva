@@ -5,9 +5,9 @@
  {% endblock %}
 
 
-{% block principal %}
-<section class="main-content">
-    <section class="wrapper">
+{% block main_content %}
+
+<div style="padding: 10px 20px">
         <h3>Affichage de vos archives</h3>
 
         {% if error %}
@@ -63,30 +63,35 @@
                 </div>
                 <div class="showback" style="margin-top: 50px">
                     <h4 class="centered" > Autre archive </h4>
+                    {% if archives_ %}
                     <div class="table-inbox-wrap ">
                       <table class="table table-inbox table-hover">
                         <tbody>
+                        {% for item in archives_ %}
                           <tr class="unread">
                             <td class="inbox-small-cells dont-show">
                               <i class="fa fa-unlock"></i>
                             </td>
-                            <td class="view-message  ">jhon doe : directeur </td>
-                            <td class="view-message "><a href="mail_view.html"> Titre de l'archive </a></td>
+                            <td class="view-message  "> {{ item.auteur }} </td>
+                            <td class="view-message "><a href="{%  url 'archive:consultation' item.pk %}"> {{ item.titre }} </a></td>
                             <td class="view-message  inbox-small-cells"><i class="fa fa-paperclip"></i></td>
-                            <td class="view-message  text-right">08:10 AM</td>
+                            <td class="view-message  text-right">{{ item.Date_creation }}</td>
                           </tr>
+                        {% endfor %}
                         </tbody>
                       </table>
                     </div>
+                    {% else %}
+                        <p> pas d'archive disponible pour l'instant </p>
+                    {% endif %}
+
                 </div>
               </div>
                 <div class=" add-task-row" style="padding: 0 15px">
                   <a class="btn btn-success btn-sm pull-left" href="{% url 'archive:creation' %}">ajouter archive</a>
-                  <a class="btn btn-default btn-sm pull-right" href="#">demande de consultation d'archive</a>
                 </div>
             </div>
-    </section>
-</section>
+</div>
 
 
 {% endblock %}

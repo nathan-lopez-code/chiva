@@ -66,7 +66,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="{% url 'utilisateurs:profile' %}"><img alt="image" src="{% if user.photo %}{{ user.photo.url }}{% else %} {% static  'img/avatar.jpg'%} {% endif %} " class="img-circle" width="80"></a></p>
-          <h5 class="centered">{{ user.user.first_name }}  {{ user.user.last_name }}</h5>
+            <h5 class="centered">{% if user.user.first_name %}{{ user.user.first_name }}  {{ user.user.last_name }}{% else %} mettez jour <a href="{% url 'utilisateurs:profile' %}">votre profile ici</a>{% endif %}</h5>
           <li class="mt">
             <a class="active" href="{% url 'utilisateurs:dashboard' %}">
               <i class="fa fa-dashboard"></i>
@@ -91,13 +91,19 @@
               </a>
             <ul class="sub">
               <li><a href="{% url 'archive:creation' %}">creer une archive</a></li>
-              <li><a href="{% url 'archive:affichage' %}">Afficher tout les archive</a></li>
+              <li><a href="{% url 'archive:affichage' %}">Calendar</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="todo_list.html">Todo List</a></li>
+              <li><a href="dropzone.html">Dropzone File Upload</a></li>
+              <li><a href="inline_editor.html">Inline Editor</a></li>
+              <li><a href="file_upload.html">Multiple File Upload</a></li>
             </ul>
           </li>
         </ul>
         <!-- sidebar menu end-->
       </div>
     </aside>
+
     {% block principal %}
     <section id="main-content">
       <section class="wrapper">

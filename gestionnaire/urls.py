@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CreateArchive, DetailArchive, ModificationArchive, affichageArchive, deleteArchive, file_response
+from .views import CreateArchive, DetailArchive, ModificationArchive, affichageArchive, deleteArchive
 
 app_name = "archive"
 
@@ -9,5 +9,4 @@ urlpatterns = [
     path("modification/<int:pk>", ModificationArchive.as_view(), name="modification"),
     path("affichage/", affichageArchive, name="affichage"),
     path("supprimer/<int:pk>", deleteArchive, name="suppression"),
-    path("fihcier/<int:pk>", file_response, name="download")
 ]
