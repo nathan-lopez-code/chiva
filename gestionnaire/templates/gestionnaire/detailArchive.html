@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block titre %}
+    detail de l'archive
+{% endblock %}
+
+{% block main_content %}
+<div class="chat-room mt">
+          <aside class="mid-side">
+            <div class="chat-room-head">
+              <h3>{{ archive.titre }}</h3>
+            </div>
+            <div class="room-desk">
+              <h4 class="pull-left">Presentation</h4>
+              <a href="{% url 'archive:modification' archive.pk %}" class="pull-right btn btn-theme02"> modifier </a>
+              <div class="room-box">
+                <h5 class="text-primary">description</h5>
+                <p>{% if archive.description %} {{ archive.description }} {% else %}Aucune description n'a été enregistrer pour cette archive{% endif %}</p>
+              </div>
+              <div class="room-box">
+                <h5 class="text-primary">Date</h5>
+                <p>Date de création : <b> {{ archive.Date_creation }} </b></p>
+                <p>Date de dernier modification : <b> {{ archive.Date_modification }} </b></p>
+                <p>Date de péremption : <b> {{ archive.Date_peremtion }} </b></p>
+
+              </div>
+            </div>
+            <div class="room-desk">
+              <h4 class="pull-left">fichier joint</h4>
+              <div class="room-box">
+                <h5 class="text-primary">nom du fichier</h5>
+                <p>{% if archive.fichier %}nom : {{ archive.nom }}<br> type : {{ archive.type }}{% else %}Aucun fichier n'a été joint{% endif %}</p>
+              </div>
+              <div class="room-box">
+                <h5 class="text-primary"><a href="{% url 'archive:download' archive.pk%}">fichier</a></h5>
+                <p>{% if archive.fichier %}nom : {{ archive.nom }}<br> type : {{ archive.type }}{% else %}Aucun fichier n'a été joint{% endif %}</p>
+              </div>
+
+
+            </div>
+          </aside>
+          {% if archives %}
+          <aside class="right-side">
+            <div class="user-head">
+
+            </div>
+            <div class="invite-row">
+              <h4 class="pull-left">Mes archives</h4>
+              <a href="{% url 'archive:creation' %}" class="btn btn-theme04 pull-right">+ ajouter</a>
+            </div>
+            <ul class="chat-available-user">
+                {% for item in archives %}
+              <li>
+                <a href="">
+                    <i class="fa fa-file" ></i>
+                  item.titre
+                  <span class="text-muted">{{ item.Date_modification}}</span>
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </aside>
+        {% endif %}
+        </div>
+        <!-- page end-->
+      </section>
+      <!-- /wrapper -->
+    </section>
+{% endblock %}
